@@ -44,28 +44,3 @@ var Link = React.createClass({
 })
 
 export default Link;
-
-// })
-// export default function Link({ heading, text }){
-//   getInitialState: function() {
-//     return {
-//       links: [],
-//       poop: 'poop'
-//     }
-//   }
-//   function handleClick(e){
-//     e.preventDefault();
-//     console.log('Button pressed');
-//     axios.get("https://linkbot-wlfymorkum.now.sh/links")
-//     .then(function(result) {
-//       console.log(result.data[1]);
-//     });
-//   }
-//   return (
-//     <div className="jumbotron">
-//       <h1>Snoop</h1>
-//       <p> a loop </p>
-//       <button onClick={handleClick}></button>
-//     </div>
-//   )
-// }
