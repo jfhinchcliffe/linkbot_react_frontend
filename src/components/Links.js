@@ -15,13 +15,14 @@ var Links = React.createClass({
   },
 
   addLink: function(title, url) {
-    var newVal = {title: title, url: url}
-    this.setState({
-      links: this.state.links.concat([newVal])
-    })
+    this.linkList();
   },
 
   componentDidMount: function() {
+    this.linkList();
+  },
+
+  linkList: function() {
     var th = this;
     this.serverRequest = 
       axios.get("https://linkbot-wlfymorkum.now.sh/links")
@@ -31,7 +32,7 @@ var Links = React.createClass({
             time: Date()
           });
         })
-  },
+  }, 
 
   render: function() {
     return (

@@ -11,7 +11,7 @@ var Form = React.createClass({
   handleSubmit: function (e) {  
     e.preventDefault();
     this.postToAPI(this.refs.title.value, this.refs.url.value);
-    this.addToLinks(this.refs.title.value, this.refs.url.value);
+    this.props.addLink();
     this.cleanFields();
   },
 
@@ -26,10 +26,6 @@ var Form = React.createClass({
       .catch(function (error) {
         console.log(error);
     });
-  },
-
-  addToLinks: function(title, url) {
-    this.props.addLink(title, url);
   },
 
   cleanFields: function() {
