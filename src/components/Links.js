@@ -2,17 +2,23 @@ import React from 'react';
 import axios from 'axios';
 import Form from './Form';
 
-var Link = React.createClass({
+var Links = React.createClass({
   getInitialState: function() {
     return {
       links: [],
-      poop: 'poop', 
       time: 'Unknown'
     }
   },
 
   foo: (word) => {
     alert(word);
+  },
+
+  addLink: function(title, url) {
+    var newVal = {title: title, url: url}
+    this.setState({
+      links: this.state.links.concat([newVal])
+    })
   },
 
   componentDidMount: function() {
@@ -26,13 +32,8 @@ var Link = React.createClass({
           });
         })
   },
-  
-  componentWillUnmount: function() {
-    this.serverRequest.abort();
-  },
 
   render: function() {
-    var poop = 'poop';
     return (
       <div>
         <p>Last Updated: {this.state.time}</p>
@@ -44,7 +45,7 @@ var Link = React.createClass({
             </div>
           )
         })}
-        <Form foo={this.foo} addALink={this.addALink} />
+        <Form addLink={this.addLink} />
         Link State
         <pre>{JSON.stringify(this.state, null, 2)}</pre>
         Link Props
@@ -55,4 +56,4 @@ var Link = React.createClass({
 
 })
 
-export default Link;
+export default Links;

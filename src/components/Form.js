@@ -1,23 +1,21 @@
 import React from 'react';
 import axios from 'axios';
 
-class Form extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      title: '', 
-      url: ''
-    };
+var Form = React.createClass({
+  getInitialState: () => {
+    return { title: '',
+             url: ''         
+    }
+  },
 
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
+  handleSubmit: function (e) {  
+    e.preventDefault();
+    this.postToAPI(this.refs.title.value, this.refs.url.value);
+    this.addToLinks(this.refs.title.value, this.refs.url.value);
+    this.cleanFields();
+  },
 
-
-  handleSubmit(event) {
-    event.preventDefault();
-    var title = this.refs.title.value;
-    var url = this.refs.url.value;
-    this.setState({title: title, url: url});
+  postToAPI: function(title, url) {
     axios.post("https://linkbot-wlfymorkum.now.sh/links", {
       title: title,
       url: url
@@ -27,28 +25,32 @@ class Form extends React.Component {
       })
       .catch(function (error) {
         console.log(error);
-      });  
-    // alert(`A thing was submitted: ${this.state.url} ${this.state.title} `);
-  }
+    });
+  },
 
-  render() {
+  addToLinks: function(title, url) {
+    this.props.addLink(title, url);
+  },
+
+  cleanFields: function() {
+    this.refs.title.value = '';
+    this.refs.url.value = '';
+  },
+
+
+  render: function () {
     return (
       <div>
         Enter New Link 
         <form onSubmit={this.handleSubmit}>
-            Title:
-            <input type="text" ref="title"  />
-            URL:
-            <input type="text" ref="url"  />
+          <input type="text" ref="title" />
+          <input type="text" ref="url" />
           <input type="submit" value="Submit" />
         </form>
-        Form State
-        <pre>{JSON.stringify(this.state, null, 2)}</pre>
-        Form Props
-        <pre>{JSON.stringify(this.props)}</pre>
-      </div>  
+      </div>
     );
   }
-}
+
+})
 
 export default Form;
