@@ -10,18 +10,17 @@ class Form extends React.Component {
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.postToAPI = this.postToAPI.bind(this);
   }
 
 
   handleSubmit(event) {
     event.preventDefault();
-    this.state.title = this.refs.title.value;
-    this.state.url = this.refs.url.value;
-    //this.setState({title: this.refs.title.value, url: this.refs.url.value});
+    var title = this.refs.title.value;
+    var url = this.refs.url.value;
+    this.setState({title: title, url: url});
     axios.post("https://linkbot-wlfymorkum.now.sh/links", {
-      title: this.state.title,
-      url: this.state.url
+      title: title,
+      url: url
       })
       .then(function (response) {
         console.log(response);
@@ -29,34 +28,24 @@ class Form extends React.Component {
       .catch(function (error) {
         console.log(error);
       });  
-    
-    alert(`A thing was submitted: ${this.state.url} ${this.state.title} `);
+    // this.props.addALink();
+    // alert(`A thing was submitted: ${this.state.url} ${this.state.title} `);
   }
-
-  postToAPI() {
-
-    axios.post("https://linkbot-wlfymorkum.now.sh/links", {
-      firstName: this.state.title,
-      lastName: this.state.url
-      })
-      .then(function (response) {
-        console.log(response);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });   
-    alert(`Axios should have posted`);  
-  }   
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
-          Title:
-          <input type="text" ref="title"  />
-          URL:
-          <input type="text" ref="url"  />
-        <input type="submit" value="Submit" />
-      </form>
+      <div>
+        <button onClick={this.props.addALink.bind(this)}>AddALink!</button>
+        <form onSubmit={this.handleSubmit}>
+            Title:
+            <input type="text" ref="title"  />
+            URL:
+            <input type="text" ref="url"  />
+          <input type="submit" value="Submit" />
+        </form>
+        <pre>{JSON.stringify(this.state, null, 2)}</pre>
+        <pre>{JSON.stringify(this.props)}</pre>
+      </div>  
     );
   }
 }

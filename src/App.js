@@ -4,7 +4,6 @@ import Jumbo from './components/Jumbo';
 import Link from './components/Link';
 import Footer from './components/Footer';
 import Hobbies from './components/Hobbies';
-import Form from './components/Form';
 import './App.css';
 
 class App extends Component {
@@ -27,7 +26,6 @@ class App extends Component {
         <Jumbo heading='my heading' text='this is some text, suckah!' />
         
         <Link />
-        <Form />
 
         <Hobbies hobbyList={this.props.profileData.hobbyList} />
         <Footer />
