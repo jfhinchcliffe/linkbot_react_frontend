@@ -28,14 +28,13 @@ class Form extends React.Component {
       .catch(function (error) {
         console.log(error);
       });  
-    // this.props.addALink();
     // alert(`A thing was submitted: ${this.state.url} ${this.state.title} `);
   }
 
   render() {
     return (
       <div>
-        <button onClick={this.props.addALink.bind(this)}>AddALink!</button>
+        Enter New Link 
         <form onSubmit={this.handleSubmit}>
             Title:
             <input type="text" ref="title"  />
@@ -43,7 +42,9 @@ class Form extends React.Component {
             <input type="text" ref="url"  />
           <input type="submit" value="Submit" />
         </form>
+        Form State
         <pre>{JSON.stringify(this.state, null, 2)}</pre>
+        Form Props
         <pre>{JSON.stringify(this.props)}</pre>
       </div>  
     );

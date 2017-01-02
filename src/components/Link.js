@@ -6,29 +6,14 @@ var Link = React.createClass({
   getInitialState: function() {
     return {
       links: [],
-      poop: 'poop'
+      poop: 'poop', 
+      time: 'Unknown'
     }
   },
 
   foo: (word) => {
     alert(word);
   },
-
-  addALink: () => {
-    //alert(link);
-    // var newLinks = this.state.links.slick();
-    // newLinks.push(link);
-    // this.setState({links: newLinks});
-    var th = this;
-    this.serverRequest = 
-      axios.get("https://linkbot-wlfymorkum.now.sh/links")
-        .then(function(result) {    
-          th.setState({
-            links: result.data,
-            time: Date.now()
-          });
-        })
-   },
 
   componentDidMount: function() {
     var th = this;
@@ -37,7 +22,7 @@ var Link = React.createClass({
         .then(function(result) {    
           th.setState({
             links: result.data,
-            time: Date.now()
+            time: Date()
           });
         })
   },
@@ -50,7 +35,6 @@ var Link = React.createClass({
     var poop = 'poop';
     return (
       <div>
-      <button onClick={this.foo.bind(this, poop)}>Alert?</button>
         <p>Last Updated: {this.state.time}</p>
         <h2>Links from API</h2>
         {this.state.links.map(function(link) {
@@ -61,6 +45,10 @@ var Link = React.createClass({
           )
         })}
         <Form foo={this.foo} addALink={this.addALink} />
+        Link State
+        <pre>{JSON.stringify(this.state, null, 2)}</pre>
+        Link Props
+        <pre>{JSON.stringify(this.props)}</pre>
       </div>
     )
   }
