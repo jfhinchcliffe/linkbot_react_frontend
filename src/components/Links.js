@@ -25,7 +25,7 @@ var Links = React.createClass({
   linkList: function() {
     var th = this;
     this.serverRequest = 
-      axios.get("https://linkbot-wlfymorkum.now.sh/links")
+      axios.get("https://linkbot-ytogugajwv.now.sh/links")
         .then(function(result) {    
           th.setState({
             links: result.data,

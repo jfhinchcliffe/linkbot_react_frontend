@@ -16,7 +16,7 @@ var Form = React.createClass({
   },
 
   postToAPI: function(title, url) {
-    axios.post("https://linkbot-wlfymorkum.now.sh/links", {
+    axios.post("https://linkbot-ytogugajwv.now.sh/links", {
       title: title,
       url: url
       })
