@@ -10,10 +10,6 @@ var Links = React.createClass({
     }
   },
 
-  foo: (word) => {
-    alert(word);
-  },
-
   addLink: function(title, url) {
     this.linkList();
   },
@@ -25,7 +21,7 @@ var Links = React.createClass({
   linkList: function() {
     var th = this;
     this.serverRequest = 
-      axios.get("https://linkbot-ytogugajwv.now.sh/links")
+      axios.get("https://linkbot-qtsuadiutz.now.sh/links")
         .then(function(result) {    
           th.setState({
             links: result.data,
@@ -34,15 +30,22 @@ var Links = React.createClass({
         })
   }, 
 
+  handleDelete(event, id) {
+   alert(id);
+  },
+
+
   render: function() {
     return (
       <div>
         <p>Last Updated: {this.state.time}</p>
         <h2>Links from API</h2>
-        {this.state.links.map(function(link) {
+        {this.state.links.map((link) => {
           return (
             <div key={link.id} className="link">
-              <p><a href={link.url}> {link.title}</a> votes: {link.votes} </p>
+              <p>
+                <a href={link.url}> {link.title}</a> votes: {link.votes} |  <button onClick={this.handleDelete} >Button</button>
+              </p>
             </div>
           )
         })}

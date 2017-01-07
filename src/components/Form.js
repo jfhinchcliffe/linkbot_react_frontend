@@ -1,6 +1,9 @@
 import React from 'react';
 import axios from 'axios';
 
+// Ask Pat - how to make frontpage update once new Link is posted
+// Ask Pat - why does the page not render when I put 'onClick' into the button?
+
 var Form = React.createClass({
   getInitialState: () => {
     return { title: '',
@@ -16,12 +19,13 @@ var Form = React.createClass({
   },
 
   postToAPI: function(title, url) {
-    axios.post("https://linkbot-ytogugajwv.now.sh/links", {
+    axios.post("https://linkbot-qtsuadiutz.now.sh/links", {
       title: title,
       url: url
       })
-      .then(function (response) {
+      .then((response) => {
         console.log(response);
+        this.props.addLink();
       })
       .catch(function (error) {
         console.log(error);

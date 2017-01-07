@@ -9,7 +9,7 @@ class App extends Component {
     
     return (
       <div className="App">
-        <Jumbo heading='LinkBot React Frontend' text='Creating links from post requests to https://linkbot-wlfymorkum.now.sh/links!' />
+        <Jumbo heading='LinkBot React Frontend' text='Creating links from post requests to https://linkbot-ytogugajwv.now.sh/links' />
         <Links />
         <Footer />
       </div>
